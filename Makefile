@@ -4,7 +4,7 @@ build:
 	python generator.py > out
 
 result:
-	bat out
+	cat out
 
 hello:
 	echo "hello world"
