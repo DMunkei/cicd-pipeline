@@ -7,13 +7,20 @@ on:
     branches: [main]
 
 jobs:
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linting with Black
+        uses: datadog/action-py-black-formatter@v2.1
+        with:
+          check_mode: "true"
   build:
+    needs: black
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup python
         uses: actions/setup-python@v5
         with:
@@ -21,9 +28,6 @@ jobs:
 
       - name: Execute script
         run: make build
-
-      - name: Debug directory
-        run: ls -al
 
       - name: Read new Output
         run: make result
