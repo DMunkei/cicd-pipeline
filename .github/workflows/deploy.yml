@@ -22,5 +22,8 @@ jobs:
       - name: Execute script
         run: make build
 
+      - name: Debug directory
+        run: ls -al
+
       - name: Read new Output
         run: make result
